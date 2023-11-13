@@ -24,5 +24,11 @@ describe('post error', () => {
     cy.get('.submit-order-btn').click();
     cy.get('.form-error').contains('Select at least one ingredient').should('exist');
     cy.get('.order').should('have.length', 3);
+
+    cy.get('input[name=name]').clear();
+    cy.get('form').contains('button', 'beans').click();
+    cy.get('.submit-order-btn').click();
+    cy.get('.form-error').contains('Please enter a name').should('exist');
+    cy.get('.order').should('have.length', 3);
   })
 })
