@@ -4,8 +4,8 @@ describe('homepage', () => {
       statusCode: 200,
       fixture: "orders",
   }).as("getOrders")
-  cy.visit("http://localhost:3000")
-  cy.wait('@getOrders')
+    cy.visit("http://localhost:3000")
+    cy.wait('@getOrders')
   })
 
   it("user first visit", () => {
