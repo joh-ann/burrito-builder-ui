@@ -8,6 +8,11 @@ function OrderForm({ handleOrders }) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    if(name.trim() === "" && ingredients.length === 0) {
+      setError("Please enter a name and select at least one ingredient");
+      return;
+    }
+
     if (name.trim() === "") {
       setError("Please enter a name");
       return;

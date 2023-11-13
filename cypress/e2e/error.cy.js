@@ -17,7 +17,7 @@ describe('post error', () => {
   it("should display an error when invalid order", () => {
     cy.url().should('eq', 'http://localhost:3000/');
     cy.get('.submit-order-btn').click();
-    cy.get('.form-error').contains('Please enter a name').should('exist');
+    cy.get('.form-error').contains('Please enter a name and select at least one ingredient').should('exist');
     cy.get('.order').should('have.length', 3);
 
     cy.get('input[name=name]').type('Mr. Bean');
