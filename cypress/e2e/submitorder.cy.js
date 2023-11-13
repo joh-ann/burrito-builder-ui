@@ -22,16 +22,19 @@ describe('post order', () => {
     cy.get('form').contains('button', 'lettuce').click();
     cy.get('p').contains('Order: beans, lettuce').should('exist');
     cy.get('.submit-order-btn').click();
-
+    
     cy.wait('@postOrders').then((interception) => {
       const { name, ingredients } = interception.request.body;
       cy.log(name, ingredients);
     });
-
-    cy.get('.order').should('have.length', 4);
     
+    cy.get('.form-error').should('not.exist');
+    cy.get('.order').should('have.length', 4);
     cy.get('.order').eq(3).contains('Johann');
     cy.get('.order').eq(3).contains('beans');
     cy.get('.order').eq(3).contains('lettuce');
+
+    cy.get('input[name=name]').should('have.value', '');
+    cy.get('p').contains('Order: Nothing selected');
   })
 })
