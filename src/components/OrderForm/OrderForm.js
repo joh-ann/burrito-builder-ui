@@ -103,7 +103,7 @@ function OrderForm({ handleOrders }) {
 
       {error && <p className="form-error">{error}</p>}
 
-      <button type="button" onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button className="submit-order-btn" type="button" onClick={(e) => handleSubmit(e)}>Submit Order</button>
     </form>
   );
 }
