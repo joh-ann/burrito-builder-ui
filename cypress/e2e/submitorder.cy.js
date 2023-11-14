@@ -15,7 +15,14 @@ describe('post order', () => {
   })
 
   it("should submit an order", () => {
+    // initial state
     cy.url().should('eq', 'http://localhost:3000/');
+    cy.get('.order').should('have.length', 3);
+    cy.get('.order').first().contains('Pat').should('exist');
+    cy.get('.order').first().contains('beans').should('exist');
+    cy.get('.order').last().contains('Alex').should('exist');
+
+    // create new order
     cy.get('input[name=name]').type('Johann');
     cy.get('form').contains('button', 'beans').click();
     cy.get('p').contains('Order: beans').should('exist')
@@ -30,9 +37,10 @@ describe('post order', () => {
     
     cy.get('.form-error').should('not.exist');
     cy.get('.order').should('have.length', 4);
-    cy.get('.order').eq(3).contains('Johann');
-    cy.get('.order').eq(3).contains('beans');
-    cy.get('.order').eq(3).contains('lettuce');
+    cy.get('.order').first().contains('Pat').should('exist');
+    cy.get('.order').first().contains('beans').should('exist');
+    cy.get('.order').last().contains('Johann').should('exist');
+    cy.get('.order').last().contains('lettuce').should('exist');
 
     cy.get('input[name=name]').should('have.value', '');
     cy.get('p').contains('Order: Nothing selected');
